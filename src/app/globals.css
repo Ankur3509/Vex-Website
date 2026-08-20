@@ -1,0 +1,197 @@
+@import "tailwindcss";
+
+/* ── VEX Design Tokens ────────────────────────────────────────────────
+   Mirrors the app's own palette (ui.py):
+   #050A12 Deep Space Dark · #040810 Void · #00E8FF Cyan
+   #12D6C4 Teal · #FF5500 Ember · #00FF88 Neon · #FF3B5C Alert        */
+@theme inline {
+  --color-void: #040810;
+  --color-deep: #050a12;
+  --color-panel: rgba(9, 16, 27, 0.72);
+  --color-panel2: rgba(6, 11, 20, 0.82);
+  --color-cyan: #00e8ff;
+  --color-teal: #12d6c4;
+  --color-ember: #ff5500;
+  --color-neon: #00ff88;
+  --color-alert: #ff3b5c;
+  --color-mist: #8fc7ea;
+  --color-frost: #e8fbff;
+  --color-mute: #3a6c82;
+  --color-borderline: rgba(0, 232, 255, 0.16);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-space);
+  --font-mono: var(--font-jetbrains);
+}
+
+:root {
+  --bg-base: #050a12;
+  --bg-void: #040810;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--color-mist);
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: rgba(0, 232, 255, 0.28);
+  color: var(--color-frost);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #04070d;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #0d3a58, #123a52);
+  border-radius: 8px;
+  border: 2px solid #04070d;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #145070, #14e8ff);
+}
+
+/* ── Ambient background layers ─────────────────────────────────────── */
+.bg-deep-space {
+  background:
+    radial-gradient(1200px 800px at 50% -10%, rgba(0, 232, 255, 0.08), transparent 60%),
+    radial-gradient(1000px 700px at 85% 20%, rgba(18, 214, 196, 0.05), transparent 55%),
+    radial-gradient(900px 700px at 10% 75%, rgba(255, 85, 0, 0.05), transparent 55%),
+    var(--bg-void);
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(0, 232, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 232, 255, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 75%);
+  animation: grid-drift 24s linear infinite;
+}
+
+.scanlines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0, 232, 255, 0.028) 3px,
+    rgba(0, 232, 255, 0.028) 4px
+  );
+}
+
+.scan-beam {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 232, 255, 0.05) 45%,
+    rgba(0, 232, 255, 0.09) 50%,
+    rgba(0, 232, 255, 0.05) 55%,
+    transparent
+  );
+  height: 140px;
+  width: 100%;
+  animation: scan-beam 9s linear infinite;
+}
+
+/* ── Glow helpers ──────────────────────────────────────────────────── */
+.glow-text {
+  text-shadow:
+    0 0 12px rgba(0, 232, 255, 0.55),
+    0 0 42px rgba(0, 232, 255, 0.25);
+}
+.glow-ember {
+  text-shadow:
+    0 0 12px rgba(255, 85, 0, 0.6),
+    0 0 40px rgba(255, 85, 0, 0.3);
+}
+.glow-ring {
+  box-shadow:
+    0 0 0 1px rgba(0, 232, 255, 0.25),
+    0 0 22px rgba(0, 232, 255, 0.22),
+    inset 0 0 18px rgba(0, 232, 255, 0.06);
+}
+
+/* ── Typography helpers ────────────────────────────────────────────── */
+.label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+/* ── Keyframes ─────────────────────────────────────────────────────── */
+@keyframes grid-drift {
+  0% { background-position: 0 0; }
+  100% { background-position: 56px 56px; }
+}
+
+@keyframes scan-beam {
+  0% { transform: translateY(-160px); opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translateY(120vh); opacity: 0; }
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0.15; }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.8); opacity: 0.4; }
+}
+
+@keyframes ring-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ring-spin-rev {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes bar-eq {
+  0%, 100% { transform: scaleY(0.25); opacity: 0.5; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes dash-flow {
+  to { stroke-dashoffset: -24; }
+}
+
+@keyframes core-throb {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.06); filter: brightness(1.35); }
+}
+
+@keyframes orbit-x {
+  0% { transform: rotateX(72deg) rotateZ(0deg); }
+  100% { transform: rotateX(72deg) rotateZ(360deg); }
+}
+
+@keyframes orbit-y {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .bg-grid, .scan-beam, .scanlines { animation: none; }
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
