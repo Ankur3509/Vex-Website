@@ -196,7 +196,6 @@ export function Demo() {
   const [typed, setTyped] = useState("");
   const [agentActive, setAgentActive] = useState<string | null>("CORE");
   const [custom, setCustom] = useState("");
-  const logEndRef = useRef<HTMLDivElement>(null);
   const idx = useRef(0);
 
   useEffect(() => {
@@ -258,10 +257,6 @@ export function Demo() {
       clearTimeout(timer);
     };
   }, []);
-
-  useEffect(() => {
-    logEndRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-  }, [log, typed]);
 
   const submitPreset = (text: string) => {
     pushNow({ who: "YOU", text }, { n: log.length + 1000 });
@@ -356,7 +351,6 @@ export function Demo() {
                     <span className="ml-0.5 inline-block h-3.5 w-[7px] translate-y-[2px] bg-cyan [animation:blink_0.9s_step-end_infinite]" />
                   </motion.div>
                 )}
-                <div ref={logEndRef} />
               </div>
 
               {/* ── Input ─────────────────────────────────────────────── */}
