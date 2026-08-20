@@ -47,11 +47,17 @@ Deploys as-is to Vercel (static, zero config needed).
 
 ## The download file
 
-The download button links to `/downloads/VEX_Setup.exe`. Drop the built installer
-there with exactly that name (see `public/downloads/README.txt`). For large
-binaries on Vercel, host the exe as a GitHub Release asset instead and update
-`src/lib/content.ts` (`DOWNLOAD.href`) — the button already auto-detects the
-platform, so macOS/Linux builds only need their files added later.
+The download button links to a GitHub Release asset (the exe is 395 MB —
+too big for git's 100 MB per-file limit, so it's NOT stored in this repo):
+
+https://github.com/Ankur3509/Vex-Website/releases/download/v1.9.0/VEX_Setup.exe
+
+Releases: https://github.com/Ankur3509/Vex-Website/releases
+
+To ship a new build: create a release on GitHub → attach the exe → update
+`src/lib/content.ts` (`DOWNLOAD.href`, `version`, `checksum`) → push.
+The button already auto-detects the visitor's platform, so macOS/Linux
+builds only need their own release assets added later.
 
 ## Content / copy
 

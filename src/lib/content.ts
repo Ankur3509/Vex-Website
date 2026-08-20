@@ -228,9 +228,10 @@ export const STATS = [
 export const DOWNLOAD = {
   version: "VEX 1.9",
   fileName: "VEX_Setup.exe",
-  href: "/downloads/VEX_Setup.exe",
-  sizeHint: "Large download — bundles vision & 3D model files (unpacks to 1 GB+, free disk accordingly).",
-  checksum: "SHA-256 published with each release",
+  href: "https://github.com/Ankur3509/Vex-Website/releases/download/v1.9.0/VEX_Setup.exe",
+  sizeHint:
+    "~395 MB download — bundles the vision & 3D model files (unpacks to 1 GB+, free disk accordingly).",
+  checksum: "SHA-256: EBC5168267F1DC5547BA00E9CE7449AEDCA36F0DB7FD54FD5BEE474FA2F2698E",
 };
 
 export const SOCIALS = {
